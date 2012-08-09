@@ -1,9 +1,12 @@
 
 
 /* ===== Primary Styles ========================================================
-   Author:
+   Author: Gurunandan Bhat (gbhat@pobox.com)
    ========================================================================== */
-
+body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size: 62.5%;
+}
 
 
 
