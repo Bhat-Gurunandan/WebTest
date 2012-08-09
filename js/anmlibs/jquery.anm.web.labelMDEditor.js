@@ -1,8 +1,6 @@
 /*!
  * jQuery label editor for XCloud Web Applications
  * Original author: @ajpiano
- * Further changes, comments: @addyosmani
- * Licensed under the MIT license
  */
 
 // the semi-colon before the function invocation is a safety
