@@ -68,7 +68,8 @@
 
 	function _showEditor(ev) {
 
-		$(this).html($('.newlabeltemplate').html());
+		$(this)
+			.after($('.newlabeltemplate').html());
 
 		var cpicker = $(this)
 			.find('.cpicker')
