@@ -32,7 +32,7 @@
 
     // The actual plugin constructor
     function Plugin( element, options ) {
-        this.element = element; 
+        this.element = element;
 
         // jQuery has an extend method that merges the
         // contents of two or more objects, storing the
