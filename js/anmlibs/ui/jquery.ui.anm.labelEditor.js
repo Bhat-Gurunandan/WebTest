@@ -5,7 +5,7 @@
  * Licensed under the MIT license
  */
 
-;(function ( $, window, document, undefined ) {
+;(function ($, window, document, undefined) {
 
     // define your widget under a namespace of your choice
     //  with additional parameters e.g.
@@ -13,7 +13,7 @@
     // existing widget prototype to inherit from, an object
     // literal to become the widget's prototype ); 
 
-    $.widget("ui.anm.labelEditor" , {
+    $.widget('anm.labelEditor', {
 
         //Options to be used as defaults
         options: {
@@ -22,7 +22,7 @@
 			action:		'create',
 			postURL:	'/createlabel',
 			frmTmpl:	'#leditor',
-			holder:		'#ledHolder'
+			holder:		'#fholder'
         },
 
         //Setup widget (eg. element creation, apply theming
@@ -36,22 +36,17 @@
 			// The options defined above can be accessed
 			// via this.options this.element.addStuff();
 			
-			this.element.bind('click.anm', _showform);
+			this.element.on('click', this.options, this._showForm);
+			console.log('Created');
 		},
 
-		_init: function() {
-			
-			// _init is fired each time the widget is called
-			// without any arguments
-		},
-		_form: null,
 		_showForm: function(ev) {
 
-			$form = $($(this.options.template).html())
+			$form = $($(ev.data.frmTmpl).html())
 				.find('.cpicker')
 				.ColorPicker({
 					flat: true,
-					color: this.options.lColor,
+					color: ev.data.lColor,
 					onChange: function(hsb, hex, rgb) {
 						newcolor = hex;
 					},
@@ -61,13 +56,13 @@
 				})
 			.end()
 				.find('input#lname')
-				.attr('value', this.options.lName)
+				.attr('value', ev.data.lName)
 			.end()
 				.find('a#submit')
-				.bind('click.anm', _submit)
+				.bind('click', this._submit)
 			.end()
 				.find('a#cancel')
-				.bind('click.anm', _cancel);
+				.bind('click', this._cancel);
 			
 			$(this.options.holder).append($form);
 			ev.preventDefault();
@@ -86,6 +81,11 @@
 			ev.preventDefault();
 		},
 
+		_cancel: function() {
+			
+			console.log('Cancelled');
+		},
+		
 		// Destroy an instantiated plugin and clean up
 		// modifications the widget has made to the DOM
         destroy: function () {
