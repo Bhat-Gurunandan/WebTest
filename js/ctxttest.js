@@ -3,26 +3,17 @@
 
 $(document).ready(function() {
 
-	$('div.bp').anmBoilerplate({msg: 'Custom Message'});
-
-	// Delete Handlers
-	$('a.delete').click(function(ev){
-		
-		$('div.bp').anmBoilerplate('anmdelete');
-		ev.preventDefault();
+	$('div.ctxt').anmContextMenu({menu: 'ctxtMenu'}, function(action, el, pos) {
+		alert(
+			'Action: ' + action + '\n\n' +
+			'Element ID: ' + $(el).attr('id') + '\n\n' +
+			'X: ' + pos.x + ' Y: ' + pos.y + ' (relative to element)\n\n' +
+			'X: ' + pos.docX + ' Y: ' + pos.docY + ' (relative to document)'
+		);
 	});
 	
-	// Delete Handlers and remove attached data
-	$('a.destroy').click(function(ev){
+	$('div.ctxt').click(function(){
 		
-		$('div.bp').anmBoilerplate('anmdestroy');
-		ev.preventDefault();
-	});
-
-	// Reapply Handlers
-	$('a.reinit').click(function(ev){
-		
-		$('div.bp').anmBoilerplate({msg: 'New Custom Message'});
-		ev.preventDefault();
-	});
+		$(this).toggleClass('ctxtred');
+	})
 });

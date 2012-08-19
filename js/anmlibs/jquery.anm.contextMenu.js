@@ -1,5 +1,5 @@
 /*!
- * jQuery Example Plugin Boilerplate
+ * jQuery Context Menu (Rt-Clk) Plugin
  * Original author: TORCOMM, Inc.
  */
 
@@ -13,7 +13,7 @@
 		};
 
     // Constructor
-    function Plugin(element, options) {
+    function Plugin(element, options, callback) {
 
         this.options = $.extend( {}, defaults, options) ;
 		if( this.options.inSpeed == 0 ) this.options.inSpeed = -1;
@@ -23,18 +23,23 @@
         this._defaults = defaults;
         this._name = pluginName;
 
-        this.init();
+        this.init(callback);
     };
 
+	// Add commands
 	Plugin.prototype = {
     
-		init: function() {
+		init: function(callback) {
 			
 			var $plugin = this,
 				$elem = $(this.element),
-				$opts = $plugin.options;
-			
-							// Disable browser context menu (requires both selectors to work in IE/Safari + FF/Chrome)
+				$opts = $plugin.options,
+				offset = $elem.offset(),
+				$menu = $('#' + $opts.menu);
+				
+			$menu.addClass('contextMenu');
+		
+			// Disable browser context menu (requires both selectors to work in IE/Safari + FF/Chrome)
 			$elem
 				.add($('ul.contextMenu'))
 				.bind('contextmenu', function() {
@@ -51,11 +56,10 @@
 						var $this = $(this),
 							d = {},
 							x = null,
-							y = null,
-							$menu = $('#' + $opts.menu);
+							y = null;
 	
 						$this.off('mouseup.' + pluginName);
-						$('contextMenu').hide();
+						$('.contextMenu').hide();
 						
 						// Detect mouse position
 						if( self.innerHeight ) {
@@ -107,31 +111,31 @@
 							switch( e.keyCode ) {
 
 								case 38: // up
-									if( $(menu).find('li.hover').size() == 0 ) {
+									if( $menu.find('li.hover').size() == 0 ) {
 
-										$(menu).find('li:last').addClass('hover');
+										$menu.find('li:last').addClass('hover');
 									}
 									else {
 
-										$(menu).find('li.hover').removeClass('hover').prevAll('li:not(.disabled)').eq(0).addClass('hover');
-										if( $(menu).find('li.hover').size() == 0 ) $(menu).find('li:last').addClass('hover');
+										$menu.find('li.hover').removeClass('hover').prevAll('li:not(.disabled)').eq(0).addClass('hover');
+										if( $menu.find('li.hover').size() == 0 ) $menu.find('li:last').addClass('hover');
 									}
 									break;
 
 								case 40: // down
-									if( $(menu).find('li.hover').size() == 0 ) {
+									if( $menu.find('li.hover').size() == 0 ) {
 
-										$(menu).find('li:first').addClass('hover');
+										$menu.find('li:first').addClass('hover');
 									}
 									else {
 
-										$(menu).find('li.hover').removeClass('hover').nextAll('li:not(.disabled)').eq(0).addClass('hover');
-										if( $(menu).find('li.hover').size() == 0 ) $(menu).find('li:first').addClass('hover');
+										$menu.find('li.hover').removeClass('hover').nextAll('li:not(.disabled)').eq(0).addClass('hover');
+										if( $menu.find('li.hover').size() == 0 ) $menu.find('li:first').addClass('hover');
 									}
 									break;
 
 								case 13: // enter
-									$(menu).find('li.hover A').trigger('click');
+									$menu.find('li.hover a').trigger('click');
 									break;
 
 								case 27: // esc
@@ -147,67 +151,71 @@
 
 						$menu
 							.find('li:not(.disabled) a')
-							.click( function() {
+							.click( function(evt) {
 								$(document)
 									.unbind('click')
 									.unbind('keypress');
 
-								$(".contextMenu").hide();
+								$('.contextMenu').hide();
 		
 								// Callback
-								if(callback)
-									callback($(this).attr('href').substr(1), $(srcElement), {x: x - offset.left, y: y - offset.top, docX: x, docY: y});
+								if( callback && typeof callback === 'function')
+									callback($(this).attr('href').substr(1), $this, {x: x - offset.left, y: y - offset.top, docX: x, docY: y});
 								
-								return false;
+								evt.preventDefault();
 							});
 							
 						// Hide bindings
-						setTimeout( function() { // Delay for Mozilla
+						/*
+						setTimeout(function() { // Delay for Mozilla
 
-							$(document).click( function() {
+							$(document).click(function(evt) {
 
 								$(document)
 									.unbind('click')
 									.unbind('keypress');
 
-								$(menu).fadeOut(o.outSpeed);
-								return false;
+								$menu.fadeOut($opts.outSpeed);
+								evt.preventDefault();
 							});
 						}, 0);
+						*/
 					});
 				}
-				
-				
 			});
 			
-			console.log('Init Called');
+			console.log(pluginName + ': Init Called');
 		}, 
 	
 		disableContextMenuItems: function(el, options) {
-		
+			// Not active
 			console.log(el);
 			console.log(options);			
 		},
 
 		enableContextMenuItems: function(el, options) {
+			// Not active
 		
 			console.log(el);
 			console.log(options);			
 		},
 		
 		disableContextMenu: function(el, options) {
+			// Not active
 		
 			console.log(el);
 			console.log(options);			
 		},
 
 		enableContextMenu: function(el, options) {
+			// Not active
 		
 			console.log(el);
 			console.log(options);			
 		},
 		
 		destroyContextMenu: function(el, options) {
+			// Not active
 		
 			console.log(el);
 			console.log(options);			
@@ -215,7 +223,7 @@
 	};
 
     // Wrapper to prevent multiple instantiations
-	$.fn[pluginName] = function (options) {
+	$.fn[pluginName] = function (options, callback) {
 
 		return this.each(function () {
 		
@@ -224,7 +232,7 @@
 				if (!$.data(this, 'plugin_' + pluginName)) {
 					$.data(this, 
 						'plugin_' + pluginName,
-						new Plugin(this, options)
+						new Plugin(this, options, callback)
 					);
 				}
 			}
