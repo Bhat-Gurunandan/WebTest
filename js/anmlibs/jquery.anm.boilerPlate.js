@@ -1,6 +1,6 @@
 /*!
  * jQuery Example Plugin Boilerplate
- * Original author: Torcomm Inc.
+ * Original author: TORCOMM, Inc.
  */
 
 ;(function ( $, window, document, undefined ) {
@@ -14,40 +14,39 @@
     // Constructor
     function Plugin(element, options) {
 
-		// Merge all defaults and options into 
         this.options = $.extend( {}, defaults, options) ;
-		// Cache the context
         this.element = element;
-
         this._defaults = defaults;
         this._name = pluginName;
 
         this.init();
-    }
+    };
 
 	Plugin.prototype = {
     
 		init: function() {
 			
-			this.element.on('click.anmBoilerplate', function(){
-				alert(this.options.msg);
+			var that = this
+			$(this.element).on('click.' + pluginName, function(){
+				alert(that.options.msg);
 			});
+			
+			console.log('Init Called');
 		}, 
 	
-		delete: function(el, options) {
+		anmdelete: function(el, options) {
 		
-			el.off('click.anmBoilerplate');			
+			$(el).off('click.' + pluginName);			
 		},
 
-		destroy: function(el, options) {
+		anmdestroy: function(el, options) {
 		
-			el.off('click.anmBoilerplate');
-			el.removeData('plugin_' + pluginName);
+			$(el).off('click.' + pluginName);
+			$(el).removeData('plugin_' + pluginName);
 		}
 	};
 
-    // A really lightweight plugin wrapper around the constructor,
-    // preventing against multiple instantiations
+    // Wrapper to prevent multiple instantiations
 	$.fn[pluginName] = function (options) {
 
 		return this.each(function () {
@@ -72,6 +71,6 @@
 
 				$.error( 'Command ' +  options + ' does not exist on jQuery.' + pluginName);
 			}    
-		);
+		});
 	};
 })( jQuery, window, document );
