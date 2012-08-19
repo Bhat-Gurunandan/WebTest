@@ -46,7 +46,7 @@
         this.init();
     }
 
-Plugin.prototype = {
+	Plugin.prototype = {
     
 	init: function() {
 		// Place initialization logic here
