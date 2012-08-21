@@ -3,7 +3,12 @@
 
 $(document).ready(function() {
 
-	$('div.ctxt').anmContextMenu({menu: 'ctxtMenu'}, function(action, el, pos) {
+	var options = {
+		menu:	'ctxtMenu',
+		target: 'div.ctxt'
+	};
+	
+	$('div.container').anmContextDelegatable(options, function(action, el, pos) {
 		alert(
 			'Action: ' + action + '\n\n' +
 			'Element ID: ' + $(el).attr('id') + '\n\n' +
