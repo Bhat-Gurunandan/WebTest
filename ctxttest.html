@@ -1,0 +1,118 @@
+<!doctype html>
+	<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+	<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+	<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+	<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Jquery Plugin BoilerPlate Test Page</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/contextMenu/jquery.contextMenu.css">
+		<style>
+			body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+			}
+		</style>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+	</head>
+	<body>
+		<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" href="#">HTML Boilerplate</a>
+					<div class="nav-collapse">
+						<ul class="nav">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#about">About</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<!-- Example row of columns -->
+			<div class="row">
+				<div class="span8">
+					<h2>Plugin Boilerplate Tests</h2>
+					<style>
+						div.ctxt {
+							height: 40px;
+							background: yellow;
+							margin-bottom: 10px;
+						}
+						div.ctxtred {
+							background: red !important;
+						}
+					</style>
+					<div class="row holder">
+						<div id="1" class="ctxt span2"></div>
+						<div id="2" class="ctxt span2"></div>
+						<div id="3" class="ctxt span2"></div>
+						<div id="4" class="ctxt span2"></div>
+					</div>
+					<div class="row holder">
+						<div id="5" class="ctxt span2"></div>
+						<div id="6" class="ctxt span2"></div>
+						<div id="7" class="ctxt span2"></div>
+						<div id="8" class="ctxt span2"></div>
+					</div>
+					<p>
+						<a class="btn delete" href="#">Delete</a>
+						<a class="btn destroy" href="#">Destroy</a>
+						<a class="btn reinit" href="#">Re-Init</a>
+					</p>
+					<p>
+						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, 
+						tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem 
+						malesuada magna mollis euismod. Donec sed odio dui. 
+					</p>
+				</div>
+				<div class="span4">
+					<h2>Heading</h2>
+					<p>
+						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, 
+						tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem 
+						malesuada magna mollis euismod. Donec sed odio dui. 
+					</p>
+					<p><a class="btn" href="#">View details &raquo;</a></p>
+				</div>
+			</div>
+			<hr>
+			<footer>
+				<p>&copy; TORCOMM, Inc. 2012</p>
+			</footer>
+		</div> <!-- /container -->
+		<ul id="ctxtMenu">
+			<li class="edit"><a href="#edit">Edit</a></li>
+			<li class="cut separator"><a href="#cut">Cut</a></li>
+			<li class="copy"><a href="#copy">Copy</a></li>
+			<li class="paste"><a href="#paste">Paste</a></li>
+			<li class="delete"><a href="#delete">Delete</a></li>
+			<li class="quit separator"><a href="#quit">Quit</a></li>
+		</ul>		
+		<script src="js/libs/jquery-1.7.2.min.js"></script>
+		<script src="js/libs/bootstrap/bootstrap.min.js"></script>
+		<script src="js/anmlibs/jquery.anm.contextDelegatable.js"></script>
+		<script src="js/ctxttest.js"></script>
+		<script>
+			var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g,s)}(document,'script'));
+		</script>
+	</body>
+</html>
