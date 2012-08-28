@@ -56,8 +56,23 @@
 						var $this = $(this),
 							d = {},
 							x = null,
-							y = null;
+							y = null,
+							fids = [];
 	
+						if ($this.hasClass('ui-selected')) {
+
+							$('.ui-selected').each(function(){
+								
+								fids.push($(this).attr('fileid'))
+							})
+						}
+						else {
+							
+							$('.ui-selected').removeClass('ui-selected');
+							$this.addClass('ui-selected');
+							fids.push($this.attr('fileid'));
+						}
+						
 						$('.contextMenu').hide();
 						
 						// Detect mouse position
@@ -158,7 +173,7 @@
 		
 								// Callback
 								if( callback && typeof callback === 'function')
-									callback($(this).attr('href').substr(1), $this, {x: x - offset.left, y: y - offset.top, docX: x, docY: y});
+									callback($(this).attr('href').substr(1), $this, {x: x - offset.left, y: y - offset.top, docX: x, docY: y}, fids);
 								
 								evt.preventDefault();
 							});
